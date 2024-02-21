@@ -1,0 +1,97 @@
+/* - Grayish blue: hsl(237, 18%, 59%)
+- Soft red: hsl(345, 95%, 68%)
+
+### Neutral
+
+- White: hsl(0, 0%, 100%)
+- Dark desaturated blue: hsl(236, 21%, 26%)
+- Very dark blue: hsl(235, 16%, 14%)
+- Very dark (mostly black) blue: hsl(234, 17%, 12%) */
+
+:root {
+
+    /* Colors */
+  
+    /* HSL Color Mode */
+    --grayish-blue: hsl(237, 18%, 59%);
+    --soft-red: hsl(345, 95%, 68%);
+    
+    --white: hsl(0, 0%, 100%);
+    --desaturated-blue-dark: hsl(236, 21%, 26%);
+    --dark-blue: hsl(235, 16%, 14%);
+    --dark-black-blue: hsl(234, 17%, 12%);
+}
+/* 
+.fraunces-txt {
+  font-family: "Fraunces", serif;
+} */
+
+[aria-hidden="true"] {
+  visibility: hidden;
+}
+
+/* Base CSS -- Reset Browser Defaults */
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+  
+html {
+    scroll-behavior: smooth;
+}
+  
+body {
+    width: 100%;
+    margin: 0;
+    overflow-x: hidden;
+    font-family: "Red Hat Text", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+
+    background-color: hsl(234, 17%, 12%);
+    overflow: hidden;
+
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+
+   /* background-image: url("/images/bg-stars.svg"), url("/images/pattern-hills.svg");
+   background-position: bottom right;
+   background-repeat: no-repeat;
+  background-size: cover;   */
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+.hills {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    height: 15vh;
+    transform: scaleX(1.1);
+}
+
+.container {
+    padding-top: 20vh;
+}
+
+h1 {
+    color: var(--white);
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 1.25rem;
+    letter-spacing: 6px;
+}
+
+@media (min-width:1440px) {
+    .hills {
+        position: absolute;
+        bottom: 0;
+        height: 20vh;
+        left: 0;
+        width: 100%;
+    }
+}
