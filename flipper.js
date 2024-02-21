@@ -1,4 +1,4 @@
-let deadline = new Date("Feb 22, 2024 02:17:25").getTime();
+let deadline = new Date("Feb 23, 2024 02:17:25").getTime();
 
 
 // Getting current time in required format
@@ -17,10 +17,10 @@ let seconds = Math.floor(
     (t % (1000 * 60)) / 1000);
 
 console.log("Count Down", days, " Days ", hours, " Hours ", minutes, " and ", seconds, " seconds");
-let daysStr = days.toString();
-let hoursStr = hours.toString();
-let minutesStr = minutes.toString();
-let secondsStr = seconds.toString();
+let daysStr = days.toString().padStart(2, "0");
+let hoursStr = hours.toString().padStart(2, "0");
+let minutesStr = minutes.toString().padStart(2, "0");
+let secondsStr = seconds.toString().padStart(2, "0");
 
 document.getElementById("daysElement").dataset.initValue = daysStr;
 document.getElementById("hourElement").dataset.initValue = hoursStr;
@@ -67,14 +67,10 @@ var Countdown = {
     count: function () {
 
         var that = this,
-            $day_1 = this.$.days.eq(0),
-            $day_2 = this.$.days.eq(1),
-            $hour_1 = this.$.hours.eq(0),
-            $hour_2 = this.$.hours.eq(1),
-            $min_1 = this.$.minutes.eq(0),
-            $min_2 = this.$.minutes.eq(1),
-            $sec_1 = this.$.seconds.eq(0),
-            $sec_2 = this.$.seconds.eq(1);
+            $day_1 = this.$.days,
+            $hour_1 = this.$.hours,
+            $min_1 = this.$.minutes,
+            $sec_1 = this.$.seconds;
 
         this.countdown_interval = setInterval(function () {
 
@@ -101,16 +97,16 @@ var Countdown = {
 
                 // Update DOM values
                 // Days
-                that.checkHour(that.values.days, $day_1, $day_2);
+                that.checkHour(that.values.days, $day_1);
 
                 // Hours
-                that.checkHour(that.values.hours, $hour_1, $hour_2);
+                that.checkHour(that.values.hours, $hour_1);
 
                 // Minutes
-                that.checkHour(that.values.minutes, $min_1, $min_2);
+                that.checkHour(that.values.minutes, $min_1);
 
                 // Seconds
-                that.checkHour(that.values.seconds, $sec_1, $sec_2);
+                that.checkHour(that.values.seconds, $sec_1);
 
                 --that.total_seconds;
             }
@@ -157,23 +153,13 @@ var Countdown = {
         });
     },
 
-    checkHour: function (value, $el_1, $el_2) {
+    checkHour: function (value, $el_1) {
 
-        var val_1 = value.toString().charAt(0),
-            val_2 = value.toString().charAt(1),
-            fig_1_value = $el_1.find('.top').html(),
-            fig_2_value = $el_2.find('.top').html();
+        var val_1 = value.toString().padStart(2, "0"),
+            fig_1_value = $el_1.find('.top').html().padStart(2, "0");
 
-        if (value >= 10) {
-            // Animate only if the figure has changed
-            if (fig_1_value !== val_1) this.animateFigure($el_1, val_1);
-            if (fig_2_value !== val_2) this.animateFigure($el_2, val_2);
-        }
-        else {
-            // If we are under 10, replace first figure with 0
-            if (fig_1_value !== '0') this.animateFigure($el_1, 0);
-            if (fig_2_value !== val_1) this.animateFigure($el_2, val_1);
-        }
+        // Animate only if the figure has changed
+        if (fig_1_value !== val_1) this.animateFigure($el_1, val_1);
     }
 };
 
